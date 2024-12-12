@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  self-hosted-job:
+  self-hosted-job-on-prem-account:
     runs-on: self-hosted
     steps:
       - name: Checkout code
