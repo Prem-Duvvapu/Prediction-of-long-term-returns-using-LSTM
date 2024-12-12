@@ -7,10 +7,18 @@ on:
 
 jobs:
   self-hosted-job-on-prem-account:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
         
       - name: Print message
         run: echo "workflow is running"
+        
+      - name: Run loop test
+        run: |
+          echo "Starting loop test"
+          START_TIME=$(date +%s)
+          for ((i=0; i<100000000; i++)); do :; done
+          END_TIME=$(date +%s)
+          echo "Loop test completed in $((END_TIME - START_TIME)) seconds"
