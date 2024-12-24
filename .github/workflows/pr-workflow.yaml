@@ -19,7 +19,7 @@ jobs:
         run: |
           echo "Starting loop test"
           START_TIME=$(date +%s)
-          for ((i=0; i<100000; i++)); do
+          for ((i=0; i<1000000; i++)); do
             echo "Iteration $i" > /dev/null
           done
           END_TIME=$(date +%s)
