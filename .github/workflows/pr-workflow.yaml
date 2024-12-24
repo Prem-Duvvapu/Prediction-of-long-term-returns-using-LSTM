@@ -19,6 +19,8 @@ jobs:
         run: |
           echo "Starting loop test"
           START_TIME=$(date +%s)
-          for ((i=0; i<10; i++)); do :; done
+          for ((i=0; i<100000; i++)); do
+            echo "Iteration $i" > /dev/null
+          done
           END_TIME=$(date +%s)
           echo "Loop test completed in $((END_TIME - START_TIME)) seconds"
