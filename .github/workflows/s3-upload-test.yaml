@@ -20,7 +20,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1 # Replace with your desired AWS region
+          aws-region: ap-south-1 # Replace with your desired AWS region
 
       # Step 3: Create a sample file to upload
       - name: Create sample file
@@ -30,5 +30,5 @@ jobs:
       - name: Upload artifacts to AWS S3
         uses: usualdesigner/s3-artifact-upload@main
         with:
-          bucket-name: your-bucket-name # Replace with your S3 bucket name
+          bucket-name: prem-github-artifacts
           file: sample-file.txt
