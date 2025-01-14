@@ -1,0 +1,34 @@
+name: S3 Artifact Upload Test
+
+on:
+  push:
+    branches:
+      - s3-upload-test
+
+jobs:
+  upload-to-s3:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Configure AWS credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1 # Replace with your desired AWS region
+
+      # Step 3: Create a sample file to upload
+      - name: Create sample file
+        run: echo "This is a test file for S3 upload" > sample-file.txt
+
+      # Step 4: Upload artifacts to AWS S3
+      - name: Upload artifacts to AWS S3
+        uses: usualdesigner/s3-artifact-upload@main
+        with:
+          bucket-name: your-bucket-name # Replace with your S3 bucket name
+          file: sample-file.txt
