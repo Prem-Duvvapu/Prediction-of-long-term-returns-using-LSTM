@@ -38,7 +38,7 @@ jobs:
       - name: Upload artifacts to AWS S3
         uses: usualdesigner/s3-artifact-upload@main
         with:
-          bucket-name: prem-github-artifacts
+          bucket-name: vegrow-github-artifacts
           file: ${{ env.UNIQUE_NAME }}
 
       # Step 6: Generate and output public URL
