@@ -1,9 +1,9 @@
-name: S3 Artifact Upload Test
+name: S3 Artifact Download Test
 
 on:
   push:
     branches:
-      - s3-upload-test
+      - s3-download-test
 
 jobs:
   upload-to-s3:
