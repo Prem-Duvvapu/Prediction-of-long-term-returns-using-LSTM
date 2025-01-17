@@ -44,6 +44,13 @@ jobs:
       # Step 6: Generate and output public URL
       - name: Generate and output public URL
         run: |
-          PUBLIC_URL="https://prem-github-artifacts.s3.ap-south-1.amazonaws.com/${{ env.UNIQUE_NAME }}"
+          PUBLIC_URL="https://prem-github-artifacts.s3.ap-south-1.amazonaws.com/sample-file-20250117083435.txt"
+          REFERER="https://github.com/Prem-Duvvapu/"
           echo "File uploaded successfully: $PUBLIC_URL"
           echo "PUBLIC_URL=$PUBLIC_URL" >> $GITHUB_ENV
+      
+          # Provide a curl command with the Referer header
+          CURL_COMMAND="curl -H 'Referer: $REFERER' -O $PUBLIC_URL"
+          echo "Use the following command to download the file with a Referer header:"
+          echo $CURL_COMMAND
+          echo "CURL_COMMAND=$CURL_COMMAND" >> $GITHUB_ENV
