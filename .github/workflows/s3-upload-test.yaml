@@ -3,7 +3,7 @@ name: S3 Artifact Upload Test
 on:
   push:
     branches:
-      - s3-download-test
+      - s3-upload-test
 
 jobs:
   upload-to-s3:
@@ -36,16 +36,14 @@ jobs:
 
       # Step 5: Upload artifacts to AWS S3
       - name: Upload artifacts to AWS S3
-        uses: aws-actions/s3-sync@v2
+        uses: usualdesigner/s3-artifact-upload@main
         with:
-          source: .
-          destination: s3://prem-github-artifacts/
-          region: ap-south-1
-          options: --exact-timestamps
+          bucket-name: prem-github-artifacts
+          file: ${{ env.UNIQUE_NAME }}
 
-      # Step 6: Generate public URL and output
+      # Step 6: Generate and output public URL
       - name: Generate and output public URL
         run: |
-          PUBLIC_URL="https://prem-github-artifacts.s3.ap-south-1.amazonaws.com/$UNIQUE_NAME"
+          PUBLIC_URL="https://prem-github-artifacts.s3.ap-south-1.amazonaws.com/${{ env.UNIQUE_NAME }}"
           echo "File uploaded successfully: $PUBLIC_URL"
           echo "PUBLIC_URL=$PUBLIC_URL" >> $GITHUB_ENV
